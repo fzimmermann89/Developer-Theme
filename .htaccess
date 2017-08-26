@@ -1,6 +1,6 @@
 RewriteEngine On
 
-#Compression
+# Compression
   AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript text/javascript application/json
 
 # Cache-control headers (2h)
@@ -15,10 +15,15 @@ RewriteEngine On
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-#fix nextcloud
-#  RewriteRule ^core/(.*) /nextcloud/core/$1 [R]
 
-#active sync
+# disallow config.php
+  RewriteRule config\.php$ - [F]
+
+
+# fix fzimmermann89.de
+  RewriteRule ^me.htm$ /index.html [R]
+
+# active sync
   RewriteCond %{HTTP:Authorization} ^(.*)
   RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
   RewriteRule ^Microsoft-Server-ActiveSync(.*) /z-push/index.php$2 [E=ACTIVESYNC:true,E=REMOTE_USER:%{HTTP:Authorization}]
@@ -26,5 +31,5 @@ RewriteEngine On
   RewriteRule .* - [E=HTTP_X_MS_POLICYKEY:%{HTTP:X-Ms-Policykey}]
   RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
 
-#disallow config.php
-  RewriteRule config\.php$ - [F,L]
+
+
