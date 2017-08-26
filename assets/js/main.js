@@ -2,7 +2,7 @@ jQuery(document).ready(function($) {
 
 
     /*======= Skillset *=======*/
-    
+    /*
     $('.level-bar-inner').css('width', '0');
     
     $(window).on('load', function() {
@@ -18,13 +18,13 @@ jQuery(document).ready(function($) {
         });
 
     });
-    
+    */
     /* Bootstrap Tooltip for Skillset */
-    $('.level-label').tooltip();
+    //$('.level-label').tooltip();
     
     
     /* jQuery RSS - https://github.com/sdepold/jquery-rss */
-    
+ /*   
     $("#rss-feeds").rss(
     
         //Change this to your own rss feeds
@@ -53,13 +53,13 @@ jQuery(document).ready(function($) {
         
         }
     );
-    
+   */ 
     /* Github Calendar - https://github.com/IonicaBizau/github-calendar */
-    GitHubCalendar("#github-graph", "IonicaBizau");
+    //GitHubCalendar("#github-graph", "fzimmermann89");
     
     
     /* Github Activity Feed - https://github.com/caseyscarborough/github-activity */
-    GitHubActivity.feed({ username: "caseyscarborough", selector: "#ghfeed" });
+    GitHubActivity.feed({ username: "fzimmermann89", selector: "#ghfeed" });
 
 
 });
