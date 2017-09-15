@@ -13,7 +13,7 @@ RewriteEngine On
 
 # Redirect http requests to https
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
-  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
 
 # disallow config.php
@@ -23,7 +23,9 @@ RewriteEngine On
 # fix fzimmermann89.de
   RewriteRule ^me.htm$ /index.html [R]
 
+
 # active sync
+  RewriteRule ^Autodiscover/Autodiscover.xml$ /z-push/autodiscover/autodiscover.php
   RewriteCond %{HTTP:Authorization} ^(.*)
   RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
   RewriteRule ^Microsoft-Server-ActiveSync(.*) /z-push/index.php$2 [E=ACTIVESYNC:true,E=REMOTE_USER:%{HTTP:Authorization}]
